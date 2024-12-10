@@ -1,0 +1,52 @@
+# app.py
+from flask import Flask, render_template
+from datetime import datetime
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    current_time = datetime.now().strftime("%H:%M:%S")
+    return render_template('index.html', time=current_time)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+# templates/index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tugas Cloud Computing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .time {
+            font-size: 24px;
+            color: #333;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Selamat Datang di Aplikasi Web Saya</h1>
+        <p>Ini adalah tugas mata kuliah Komputasi Awan dan Terdistribusi</p>
+        <div class="time">
+            Waktu saat ini: {{ time }}
+        </div>
+    </div>
+</body>
+</html>
+
+# requirements.txt
+Flask==2.0.1
+gunicorn==20.1.0
